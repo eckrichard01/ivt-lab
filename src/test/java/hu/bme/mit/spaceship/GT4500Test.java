@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public class GT4500Test {
+public class
+GT4500Test {
 
   private GT4500 ship;
   private TorpedoStore mockPrimaryStore;
@@ -136,6 +137,8 @@ public class GT4500Test {
 
     // Act
     ship.setWasPrimaryFiredLast(true);
+    assertEquals(true, ship.isWasPrimaryFiredLast());
+
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
@@ -155,6 +158,8 @@ public class GT4500Test {
 
     // Act
     ship.setWasPrimaryFiredLast(true);
+    assertEquals(true, ship.isWasPrimaryFiredLast());
+
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
@@ -174,6 +179,8 @@ public class GT4500Test {
 
     // Act
     ship.setWasPrimaryFiredLast(true);
+    assertEquals(true, ship.isWasPrimaryFiredLast());
+
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
@@ -194,6 +201,8 @@ public class GT4500Test {
 
     // Act
     ship.setWasPrimaryFiredLast(true);
+    assertEquals(true, ship.isWasPrimaryFiredLast());
+
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
@@ -281,5 +290,28 @@ public class GT4500Test {
     verify(mockPrimaryStore, never()).fire(1);
     verify(mockSecondaryStore).isEmpty();
     verify(mockSecondaryStore, never()).fire(1);
+  }
+
+  @Test
+  public void fireTorpedo_Default() {
+    // Act
+    boolean result = ship.fireTorpedo(FiringMode.TEST);
+
+    // Assert
+    assertEquals(false, result);
+  }
+
+  @Test
+  public void fireLaser_ALL() {
+    boolean result = ship.fireLaser(FiringMode.ALL);
+
+    assertEquals(false, result);
+  }
+
+  @Test
+  public void fireLaser_Single() {
+    boolean result = ship.fireLaser(FiringMode.SINGLE);
+
+    assertEquals(false, result);
   }
 }
